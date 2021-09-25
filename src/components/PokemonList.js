@@ -40,6 +40,8 @@ const PokemonList = (props) => {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
+    text-transform: capitalize;
     @media (max-width: 768px) {
       width: 30%;
     }
