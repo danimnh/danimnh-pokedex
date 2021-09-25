@@ -22,6 +22,7 @@ const PokemonDetails = (props) => {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    text-transform: capitalize;
   `;
 
   const ButtonContainer = styled.div`
@@ -42,7 +43,8 @@ const PokemonDetails = (props) => {
     color: black;
   `;
   const ImgContainer = styled.img`
-    width: 100%;
+    width: 70%;
+    margin: 0 auto;
   `;
   if (isModalVisible === false) {
     return null;
