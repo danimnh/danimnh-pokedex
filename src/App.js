@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  const [pokemonData, setPokemonData] = useState([]);
+
+  const getAllPokemonList = async () => {
+    const pokemonList = await axios.get("pokemon?limit=1118");
+    console.log(pokemonList);
+    setPokemonData(pokemonList.data.results);
+  };
+
+  useEffect(() => {
+    console.log("test");
+    getAllPokemonList();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>Danimnh's Pokedex</div>
     </div>
   );
 }
