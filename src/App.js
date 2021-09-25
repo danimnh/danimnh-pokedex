@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import axios from "axios";
-import Table from "./components/table";
+import PokemonList from "./components/PokemonList";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -46,7 +46,7 @@ function App() {
       >
         Owned Pokemon
       </Button>
-      <Table pokemonList={pokemonList} />
+      <PokemonList pokemonList={pokemonList} />
     </Layout>
     // </div>
   );
