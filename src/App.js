@@ -7,19 +7,15 @@ import Table from "./components/table";
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const getAllPokemonList = async () => {
-    const pokemonList = await axios.get("pokemon?limit=1118");
-    var temp = pokemonList.data.results;
-    for (var i = 0; i < temp.length; i++) {
-      console.log(temp[i]);
-      temp[i].dexNumber = i + 1;
-    }
-    console.log(temp);
-    setPokemonList(temp);
+    const pokemonListResponse = await axios.get("pokemon?limit=1118");
+    var pokemonList = pokemonListResponse.data.results;
+    setPokemonList(pokemonList);
   };
 
   const Button = styled.button`
     position: fixed;
     bottom: 20px;
+    right: 0px;
     color: white;
     background-color: blue;
     padding: 10px 20px 10px 20px;
