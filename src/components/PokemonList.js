@@ -53,13 +53,16 @@ const PokemonList = (props) => {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    width: 900px;
+    @media (max-width: 768px) {
+      width: 375px;
+    }
     margin-bottom: 60px;
   `;
   const Card = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 10px;
-    // width: 200px;
-    width: 18%;
+    width: 20%;
     padding: 12px;
     overflow: hidden;
     display: flex;
@@ -67,6 +70,7 @@ const PokemonList = (props) => {
     justify-content: center;
     text-align: center;
     text-transform: capitalize;
+    flex-shrink: 1;
     @media (max-width: 768px) {
       width: 30%;
     }
@@ -97,13 +101,14 @@ const PokemonList = (props) => {
   return (
     <>
       <div>
-        <SearchContainer>
+        {/* have to do manual style because it set focus off on input */}
+        <div style={{ height: "30px", display: "flex", padding: "10px" }}>
           <input
             placeholder="Search Pokemon"
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-        </SearchContainer>
+        </div>
       </div>
       <Pagination
         pageSize={countPerPage}
