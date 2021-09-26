@@ -1,10 +1,11 @@
 // import "./App.css";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import axios from "axios";
 import PokemonList from "./components/PokemonList";
 import PokemonDetails from "./components/PokemonDetails";
+import PokemonBox from "./components/PokemonBox";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -39,14 +40,10 @@ function App() {
     // <div className="App">
     <Layout>
       <Title>Danimnh's Pokedex</Title>
-      <Button
-        onClick={() => {
-          console.log(pokemonList);
-        }}
-      >
-        Owned Pokemon
-      </Button>
       <Router>
+        <Button>
+          <Link to="/box">Owned Pokemon</Link>
+        </Button>
         <Switch>
           <Route exact path="/">
             <PokemonList pokemonList={pokemonList} />
@@ -55,6 +52,11 @@ function App() {
             path="/details/:pokemon"
             render={(props) => <PokemonDetails {...props} />}
           />
+          <Route
+            path="/box/:pokemon/:nickname"
+            render={(props) => <PokemonDetails {...props} />}
+          />
+          <Route path="/box" render={(props) => <PokemonBox {...props} />} />
         </Switch>
       </Router>
     </Layout>
