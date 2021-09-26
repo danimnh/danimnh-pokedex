@@ -109,11 +109,7 @@ const PokemonList = (props) => {
         <Container>
           {collection.map((pokemon) => {
             return (
-              <Card
-                onClick={() => {
-                  console.log("clicked " + pokemon.name);
-                }}
-              >
+              <Card>
                 <Link
                   to={"details/" + pokemon.name}
                   style={{ textDecoration: "none", color: "#000000" }}

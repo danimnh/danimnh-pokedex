@@ -7,7 +7,6 @@ import PokemonCatchModal from "./PokemonCatchModal";
 
 const PokemonDetails = (props) => {
   let { pokemon, nickname } = props.match.params;
-  console.log(props.match.params);
   const [pokemonData, setPokemonData] = useState({});
   const [modalContent, setModalContent] = useState({});
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -16,11 +15,9 @@ const PokemonDetails = (props) => {
     const max = 2;
     const rand = Math.floor(Math.random() * max);
     if (rand === 1) {
-      console.log(rand);
       setModalContent(pokemonData);
       setIsModalVisible(true);
     } else {
-      console.log("gagal");
       setIsModalVisible(true);
     }
   };

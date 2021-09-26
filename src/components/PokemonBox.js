@@ -135,11 +135,7 @@ const PokemonBox = () => {
         <CardContainer>
           {collection.map((pokemon) => {
             return (
-              <Card
-                onClick={() => {
-                  console.log("clicked " + pokemon.name);
-                }}
-              >
+              <Card>
                 <Link
                   to={"box/" + pokemon.name + "/" + pokemon.nickname}
                   style={{ textDecoration: "none", color: "#000000" }}

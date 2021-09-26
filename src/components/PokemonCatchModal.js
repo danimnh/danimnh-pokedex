@@ -39,14 +39,11 @@ const PokemonCatchModal = (props) => {
   };
 
   const handleSendBox = (modalContent, nickname) => {
-    console.log(modalContent);
-    console.log(nickname);
     modalContent.nickname = nickname;
     let savedPokemon = localStorage.getItem("myPokemon");
     if (savedPokemon === null) {
       savedPokemon = [];
       savedPokemon.push(modalContent);
-      console.log(savedPokemon);
       localStorage.setItem("myPokemon", JSON.stringify(savedPokemon));
     } else {
       savedPokemon = JSON.parse(savedPokemon);
