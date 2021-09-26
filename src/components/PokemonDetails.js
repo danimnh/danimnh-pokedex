@@ -3,9 +3,32 @@ import styled from "@emotion/styled";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
+import PokemonCatchModal from "./PokemonCatchModal";
+
 const PokemonDetails = (props) => {
-  let { pokemon } = props.match.params;
+  let { pokemon, nickname } = props.match.params;
+  console.log(props.match.params);
   const [pokemonData, setPokemonData] = useState({});
+  const [modalContent, setModalContent] = useState({});
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleCatch = () => {
+    const max = 2;
+    const rand = Math.floor(Math.random() * max);
+    if (rand === 1) {
+      console.log(rand);
+      setModalContent(pokemonData);
+      setIsModalVisible(true);
+    } else {
+      console.log("gagal");
+      setIsModalVisible(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+    setModalContent({});
+  };
 
   let history = useHistory();
 
@@ -62,7 +85,16 @@ const PokemonDetails = (props) => {
           <ImgContainer src={pokemonData.sprites.front_default} />
         </>
       )}
-      <CatchButton>Catch</CatchButton>
+      {nickname !== undefined && <p>{nickname}</p>}
+      {pokemonData.name !== undefined && <p>{pokemonData.name}</p>}
+      {nickname === undefined && (
+        <CatchButton onClick={handleCatch}>Catch</CatchButton>
+      )}
+      <PokemonCatchModal
+        modalContent={modalContent}
+        isModalVisible={isModalVisible}
+        handleCloseModal={handleCloseModal}
+      />
     </Container>
   );
 };
