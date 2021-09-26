@@ -75,7 +75,7 @@ const PokemonDetails = (props) => {
           history.goBack();
         }}
       >
-        &laquo; Back to Home
+        &laquo; Back to {nickname === undefined ? "Home" : "Box"}
       </BackButton>
 
       {pokemonData.sprites !== undefined && (

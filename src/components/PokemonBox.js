@@ -104,7 +104,7 @@ const PokemonBox = () => {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <BackButton
           onClick={() => {
-            history.goBack();
+            history.replace("/");
           }}
         >
           &laquo; Back to Home
