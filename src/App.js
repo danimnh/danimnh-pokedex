@@ -41,18 +41,17 @@ function App() {
     <Layout>
       <Title>Danimnh's Pokedex</Title>
       <Router>
-        <Button>
-          <Link
-            to="/box"
-            style={{
-              textDecoration: "none",
-              fontWeight: "bold",
-              color: "white",
-            }}
-          >
-            Owned Pokemon
-          </Link>
-        </Button>
+        <Link
+          to="/box"
+          style={{
+            textDecoration: "none",
+            fontWeight: "bold",
+            color: "white",
+          }}
+        >
+          <Button>Owned Pokemon</Button>
+        </Link>
+
         <Switch>
           <Route exact path="/">
             <PokemonList pokemonList={pokemonList} />
