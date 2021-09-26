@@ -26,7 +26,7 @@ function App() {
   const Button = styled.button`
     position: fixed;
     bottom: 20px;
-    right: 0px;
+    right: 5px;
     color: black;
     background-color: #d2d2d6;
     padding: 10px 20px 10px 20px;
