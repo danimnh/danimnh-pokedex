@@ -47,7 +47,7 @@ const MoveLearnt = (props) => {
     box-shadow: 0 1px 2px 0 #e0e0e0;
     width: 100%;
     padding: 1em;
-    margin: 20px 0;
+    margin: 10px 0;
     border-collapse: collapse;
   `;
 

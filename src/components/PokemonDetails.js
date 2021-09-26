@@ -43,9 +43,19 @@ const PokemonDetails = (props) => {
 
   const CatchButton = styled.button`
     padding: 10px;
-    background-color: green;
-    color: white;
+    background: linear-gradient(
+      180deg,
+      rgba(250, 174, 174, 1) 14%,
+      rgba(210, 210, 214, 1) 33%,
+      rgba(210, 210, 214, 1) 61%,
+      rgba(255, 255, 255, 1) 87%
+    );
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
     margin-bottom: 10px;
+    border-radius: 10px;
+    border-width: 2px;
   `;
   const ReleaseButton = styled.button`
     padding: 10px;
@@ -98,13 +108,6 @@ const PokemonDetails = (props) => {
       ) : (
         <ReleaseButton>Release</ReleaseButton>
       )}
-      <button
-        onClick={() => {
-          console.log(pokemonData);
-        }}
-      >
-        debug
-      </button>
       <MoveLearnt moves={pokemonData.moves} />
       <PokemonCatchModal
         modalContent={modalContent}
