@@ -59,6 +59,12 @@ const PokemonDetails = (props) => {
     margin: 0 auto;
   `;
 
+  const Text = styled.h4`
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+  `;
+
   useEffect(() => {
     const getPokemonData = async () => {
       const res = await axios.get("pokemon/" + pokemon);
@@ -83,8 +89,8 @@ const PokemonDetails = (props) => {
           <ImgContainer src={pokemonData.sprites.front_default} />
         </>
       )}
-      {nickname !== undefined && <p>{nickname}</p>}
-      {pokemonData.name !== undefined && <p>{pokemonData.name}</p>}
+      {nickname !== undefined && <Text>{nickname}</Text>}
+      {pokemonData.name !== undefined && <Text>{pokemonData.name}</Text>}
       {nickname === undefined ? (
         <CatchButton onClick={handleCatch}>Catch</CatchButton>
       ) : (
