@@ -5,6 +5,7 @@ import axios from "axios";
 
 import PokemonCatchModal from "./PokemonCatchModal";
 import MoveLearnt from "./MoveLearnt";
+import PokemonType from "./PokemonType";
 
 const PokemonDetails = (props) => {
   let { pokemon, nickname } = props.match.params;
@@ -89,8 +90,9 @@ const PokemonDetails = (props) => {
           <ImgContainer src={pokemonData.sprites.front_default} />
         </>
       )}
-      {nickname !== undefined && <Text>{nickname}</Text>}
+      {nickname !== undefined && <Text>"{nickname}"</Text>}
       {pokemonData.name !== undefined && <Text>{pokemonData.name}</Text>}
+      <PokemonType pokemonType={pokemonData.types} />
       {nickname === undefined ? (
         <CatchButton onClick={handleCatch}>Catch</CatchButton>
       ) : (
