@@ -133,9 +133,9 @@ const PokemonBox = () => {
       />
       {isLoading === false && (
         <CardContainer>
-          {collection.map((pokemon) => {
+          {collection.map((pokemon, i) => {
             return (
-              <Card>
+              <Card key={i}>
                 <Link
                   to={"box/" + pokemon.name + "/" + pokemon.nickname}
                   style={{ textDecoration: "none", color: "#000000" }}

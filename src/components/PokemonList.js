@@ -107,9 +107,9 @@ const PokemonList = (props) => {
       />
       {isLoading === false && (
         <Container>
-          {collection.map((pokemon) => {
+          {collection.map((pokemon, i) => {
             return (
-              <Card>
+              <Card key={i}>
                 <Link
                   to={"details/" + pokemon.name}
                   style={{ textDecoration: "none", color: "#000000" }}
