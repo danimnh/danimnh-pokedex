@@ -28,7 +28,9 @@ const MoveLearnt = (props) => {
   };
 
   const tableData = () => {
-    return pokemonMoves.map((key, index) => tableRows({ key, index }));
+    if (pokemonMoves.length > 1) {
+      return pokemonMoves.map((key, index) => tableRows({ key, index }));
+    } else return <Tr key={"none"}>Coming soon.</Tr>;
   };
 
   const headRow = () => {
@@ -39,6 +41,7 @@ const MoveLearnt = (props) => {
 
   const Table = styled.table`
     box-shadow: 0 1px 2px 0 #e0e0e0;
+    width: 100%;
     padding: 1em;
     margin: 20px 0;
     border-collapse: collapse;
