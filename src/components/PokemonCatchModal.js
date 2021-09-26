@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { useHistory } from "react-router-dom";
+import { Capitalize } from "../utils/Capitalize";
 
 const Backdrop = styled.div`
   position: fixed;
@@ -16,12 +17,16 @@ const Modal = styled.div`
   background: #fff;
   border-radius: 5px;
   max-width: 500px;
-  //   min-height: 300px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+`;
+
+const Button = styled.button`
+  height: 30px;
+  margin-bottom: 10px;
 `;
 const PokemonCatchModal = (props) => {
   let history = useHistory();
@@ -32,14 +37,13 @@ const PokemonCatchModal = (props) => {
   if (isModalVisible === false) {
     return null;
   }
-  const Capitalize = (string) => {
-    const str = string;
-    const str2 = str.charAt(0).toUpperCase() + str.slice(1);
-    return str2;
-  };
 
   const handleSendBox = (modalContent, nickname) => {
-    modalContent.nickname = nickname;
+    if (nickname === "") {
+      modalContent.nickname = modalContent.name;
+    } else {
+      modalContent.nickname = nickname;
+    }
     let savedPokemon = localStorage.getItem("myPokemon");
     if (savedPokemon === null) {
       savedPokemon = [];
@@ -65,14 +69,15 @@ const PokemonCatchModal = (props) => {
               placeholder="Give a nickname!"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
+              style={{ height: "30px", marginBottom: "10px" }}
             />
-            <button onClick={() => handleSendBox(modalContent, nickname)}>
+            <Button onClick={() => handleSendBox(modalContent, nickname)}>
               Send to BOX
-            </button>
+            </Button>
           </>
         )}
 
-        <button onClick={handleCloseModal}>Close</button>
+        <Button onClick={handleCloseModal}>Close</Button>
       </Modal>
     </Backdrop>
   );
