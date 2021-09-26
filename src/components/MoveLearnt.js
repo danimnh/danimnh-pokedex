@@ -10,7 +10,6 @@ const tableHead = {
 
 const MoveLearnt = (props) => {
   const { moves } = props;
-  console.log(moves);
   const [pokemonMoves, setPokemonMoves] = React.useState([]);
 
   React.useEffect(() => {
@@ -30,7 +29,12 @@ const MoveLearnt = (props) => {
   const tableData = () => {
     if (pokemonMoves.length > 1) {
       return pokemonMoves.map((key, index) => tableRows({ key, index }));
-    } else return <Tr key={"none"}>Coming soon.</Tr>;
+    } else
+      return (
+        <Tr key={"none"}>
+          <Td>Coming soon.</Td>
+        </Tr>
+      );
   };
 
   const headRow = () => {
