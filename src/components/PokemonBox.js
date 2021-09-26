@@ -6,6 +6,7 @@ import "rc-pagination/assets/index.css";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
+import PokemonType from "./PokemonType";
 
 const PokemonBox = () => {
   let history = useHistory();
@@ -166,6 +167,7 @@ const PokemonBox = () => {
                   ) : (
                     <p>{pokemon.nickname}</p>
                   )}
+                  <PokemonType pokemonType={pokemon.data.types} />
                 </Link>
               </Card>
             );

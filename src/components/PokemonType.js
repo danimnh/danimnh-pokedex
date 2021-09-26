@@ -39,8 +39,9 @@ const PokemonType = (props) => {
   `;
 
   const Text = styled.div`
-    margin: 10px;
+    margin: 5px 10px 5px 10px;
     color: white;
+    font-size: 12px;
     text-transform: capitalize;
   `;
 

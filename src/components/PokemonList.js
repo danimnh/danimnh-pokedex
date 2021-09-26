@@ -6,6 +6,7 @@ import "rc-pagination/assets/index.css";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import PokemonType from "./PokemonType";
 
 const PokemonList = (props) => {
   const { pokemonList } = props;
@@ -122,6 +123,7 @@ const PokemonList = (props) => {
                   )}
 
                   <p>{pokemon.name}</p>
+                  <PokemonType pokemonType={pokemon.data.types} />
                 </Link>
               </Card>
             );
