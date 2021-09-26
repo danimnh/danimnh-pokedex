@@ -39,6 +39,7 @@ const PokemonDetails = (props) => {
 
   const BackButton = styled.button`
     height: 30px;
+    width: 30px;
   `;
 
   const CatchButton = styled.button`
@@ -55,7 +56,7 @@ const PokemonDetails = (props) => {
   `;
 
   const ImgContainer = styled.img`
-    width: 70%;
+    width: 300px;
     margin: 0 auto;
   `;
 
@@ -75,7 +76,7 @@ const PokemonDetails = (props) => {
           history.goBack();
         }}
       >
-        &laquo; Back to {nickname === undefined ? "Home" : "Box"}
+        &laquo;
       </BackButton>
 
       {pokemonData.sprites !== undefined && (

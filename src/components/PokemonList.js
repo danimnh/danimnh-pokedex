@@ -91,7 +91,7 @@ const PokemonList = (props) => {
     <>
       <div>
         {/* have to do manual style because it set focus off on input */}
-        <div style={{ height: "30px", display: "flex", padding: "10px" }}>
+        <div style={{ height: "30px", display: "flex", marginBottom: "10px" }}>
           <input
             placeholder="Search Pokemon"
             value={value}

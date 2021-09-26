@@ -79,7 +79,9 @@ const PokemonBox = () => {
 
   const BackButton = styled.button`
     height: 30px;
-    margin: 0 auto;
+    width: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
   `;
   const ImgContainer = styled.img`
     width: 100%;
@@ -101,16 +103,21 @@ const PokemonBox = () => {
   return (
     <>
       {/* have to do manual style because it set focus off on input */}
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
         <BackButton
           onClick={() => {
             history.replace("/");
           }}
         >
-          &laquo; Back to Home
+          &laquo;
         </BackButton>
         {/* have to do manual style because it set focus off on input */}
-        <div style={{ height: "30px", display: "flex", padding: "10px" }}>
+        <div style={{ height: "30px", display: "flex" }}>
           <input
             placeholder="Search on BOX"
             value={value}
