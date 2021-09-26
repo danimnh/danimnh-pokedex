@@ -5,7 +5,7 @@ import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 import styled from "@emotion/styled";
 import axios from "axios";
-import PokemonDetails from "./PokemonDetails";
+import { Link } from "react-router-dom";
 
 const PokemonList = (props) => {
   const { pokemonList } = props;
@@ -14,12 +14,6 @@ const PokemonList = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [collection, setCollection] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [modalContent, setModalContent] = useState([]);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const handleClose = () => {
-    setIsModalVisible(false);
-  };
 
   const searchData = useRef(
     throttle(async (val) => {
@@ -76,12 +70,6 @@ const PokemonList = (props) => {
     }
   `;
 
-  const SearchContainer = styled.div`
-    height: 30px;
-    padding: 10px;
-    display: flex;
-  `;
-
   const ImgContainer = styled.img`
     width: 100%;
   `;
@@ -96,6 +84,7 @@ const PokemonList = (props) => {
       searchData.current(value);
       setIsLoading(false);
     }
+    //eslint-disable-next-line
   }, [value]);
 
   return (
@@ -123,28 +112,26 @@ const PokemonList = (props) => {
               <Card
                 onClick={() => {
                   console.log("clicked " + pokemon.name);
-                  setModalContent(pokemon);
-                  setIsModalVisible(true);
                 }}
               >
-                {pokemon.data && (
-                  <ImgContainer
-                    src={pokemon.data.sprites.front_default}
-                    alt={pokemon.name + " Image"}
-                  />
-                )}
+                <Link
+                  to={"details/" + pokemon.name}
+                  style={{ textDecoration: "none", color: "#000000" }}
+                >
+                  {pokemon.data && (
+                    <ImgContainer
+                      src={pokemon.data.sprites.front_default}
+                      alt={pokemon.name + " Image"}
+                    />
+                  )}
 
-                <p>{pokemon.name}</p>
+                  <p>{pokemon.name}</p>
+                </Link>
               </Card>
             );
           })}
         </Container>
       )}
-      <PokemonDetails
-        modalContent={modalContent}
-        isModalVisible={isModalVisible}
-        handleClose={handleClose}
-      />
     </>
   );
 };

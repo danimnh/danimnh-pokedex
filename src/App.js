@@ -1,8 +1,10 @@
 // import "./App.css";
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "@emotion/styled";
 import axios from "axios";
 import PokemonList from "./components/PokemonList";
+import PokemonDetails from "./components/PokemonDetails";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -30,9 +32,7 @@ function App() {
     color: black;
   `;
   useEffect(() => {
-    console.log("test");
     getAllPokemonList();
-    console.log(pokemonList);
   }, []);
 
   return (
@@ -46,7 +46,17 @@ function App() {
       >
         Owned Pokemon
       </Button>
-      <PokemonList pokemonList={pokemonList} />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <PokemonList pokemonList={pokemonList} />
+          </Route>
+          <Route
+            path="/details/:pokemon"
+            render={(props) => <PokemonDetails {...props} />}
+          />
+        </Switch>
+      </Router>
     </Layout>
     // </div>
   );
