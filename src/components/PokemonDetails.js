@@ -36,19 +36,24 @@ const PokemonDetails = (props) => {
     display: flex;
     flex-direction: column;
   `;
+
+  const BackButton = styled.button`
+    height: 30px;
+  `;
+
   const CatchButton = styled.button`
     padding: 10px;
     background-color: green;
     color: white;
     margin-bottom: 10px;
   `;
+  const ReleaseButton = styled.button`
+    padding: 10px;
+    background-color: red;
+    color: white;
+    margin-bottom: 10px;
+  `;
 
-  // const CloseButton = styled.span`
-  //   display: flex;
-  //   justify-content: flex-end;
-  //   font-size: 30px;
-  //   color: black;
-  // `;
   const ImgContainer = styled.img`
     width: 70%;
     margin: 0 auto;
@@ -65,30 +70,25 @@ const PokemonDetails = (props) => {
   }, [pokemon]);
   return (
     <Container>
-      <button
+      <BackButton
         onClick={() => {
           history.goBack();
         }}
       >
         &laquo; Back to Home
-      </button>
+      </BackButton>
 
       {pokemonData.sprites !== undefined && (
         <>
-          <button
-            onClick={() => {
-              console.log(pokemonData);
-            }}
-          >
-            Debug
-          </button>
           <ImgContainer src={pokemonData.sprites.front_default} />
         </>
       )}
       {nickname !== undefined && <p>{nickname}</p>}
       {pokemonData.name !== undefined && <p>{pokemonData.name}</p>}
-      {nickname === undefined && (
+      {nickname === undefined ? (
         <CatchButton onClick={handleCatch}>Catch</CatchButton>
+      ) : (
+        <ReleaseButton>Release</ReleaseButton>
       )}
       <PokemonCatchModal
         modalContent={modalContent}
