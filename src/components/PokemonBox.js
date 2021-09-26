@@ -25,7 +25,7 @@ const PokemonBox = () => {
       setCurrentPage(1);
       const data = cloneDeep(
         savedPokemon
-          .filter((item) => item.name.toLowerCase().indexOf(query) > -1)
+          .filter((item) => item.nickname.toLowerCase().indexOf(query) > -1)
           .slice(0, countPerPage)
       );
       for (var i = 0; i < data.length; i++) {
