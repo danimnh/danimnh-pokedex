@@ -88,15 +88,18 @@ const PokemonBox = () => {
   `;
 
   useEffect(() => {
-    if (value === "") {
-      setIsLoading(true);
-      updatePage(1);
-      setIsLoading(false);
-    } else {
-      setIsLoading(true);
-      searchData.current(value);
-      setIsLoading(false);
+    if (savedPokemon !== null) {
+      if (value === "") {
+        setIsLoading(true);
+        updatePage(1);
+        setIsLoading(false);
+      } else {
+        setIsLoading(true);
+        searchData.current(value);
+        setIsLoading(false);
+      }
     }
+
     //eslint-disable-next-line
   }, [value]);
 
@@ -125,12 +128,17 @@ const PokemonBox = () => {
           />
         </div>
       </div>
-      <Pagination
-        pageSize={countPerPage}
-        onChange={updatePage}
-        current={currentPage}
-        total={savedPokemon.length}
-      />
+      {savedPokemon === null ? (
+        <p>You don't own a Pokemon yet.</p>
+      ) : (
+        <Pagination
+          pageSize={countPerPage}
+          onChange={updatePage}
+          current={currentPage}
+          total={savedPokemon.length}
+        />
+      )}
+
       {isLoading === false && (
         <CardContainer>
           {collection.map((pokemon, i) => {
