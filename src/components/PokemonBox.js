@@ -12,7 +12,7 @@ const PokemonBox = () => {
 
   const countPerPage = 8;
   const [value, setValue] = useState("");
-  const [savedPokemon, setSavedPokemon] = useState(
+  const [savedPokemon] = useState(
     JSON.parse(localStorage.getItem("myPokemon"))
   );
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,14 +40,17 @@ const PokemonBox = () => {
     setCurrentPage(p);
     const to = countPerPage * p;
     const from = to - countPerPage;
-    const collectionList = cloneDeep(savedPokemon.slice(from, to));
-    for (var i = 0; i < collectionList.length; i++) {
-      const pokemonData = await axios.get("pokemon/" + collectionList[i].name);
-      collectionList[i].data = pokemonData.data;
+    const savedPokemonList = cloneDeep(savedPokemon.slice(from, to));
+    for (var i = 0; i < savedPokemonList.length; i++) {
+      const pokemonData = await axios.get(
+        "pokemon/" + savedPokemonList[i].name
+      );
+      savedPokemonList[i].data = pokemonData.data;
     }
-    setCollection(collectionList);
+    setCollection(savedPokemonList);
   };
-  const Container = styled.div`
+
+  const CardContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -74,6 +77,10 @@ const PokemonBox = () => {
     }
   `;
 
+  const BackButton = styled.button`
+    height: 30px;
+    margin: 0 auto;
+  `;
   const ImgContainer = styled.img`
     width: 100%;
   `;
@@ -89,18 +96,19 @@ const PokemonBox = () => {
       setIsLoading(false);
     }
     //eslint-disable-next-line
-  }, []);
+  }, [value]);
 
   return (
     <>
-      <div>
-        <button
+      {/* have to do manual style because it set focus off on input */}
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <BackButton
           onClick={() => {
             history.goBack();
           }}
         >
           &laquo; Back to Home
-        </button>
+        </BackButton>
         {/* have to do manual style because it set focus off on input */}
         <div style={{ height: "30px", display: "flex", padding: "10px" }}>
           <input
@@ -110,14 +118,14 @@ const PokemonBox = () => {
           />
         </div>
       </div>
-      {/* <Pagination
+      <Pagination
         pageSize={countPerPage}
         onChange={updatePage}
         current={currentPage}
-        total={pokemonList.length}
-      /> */}
+        total={savedPokemon.length}
+      />
       {isLoading === false && (
-        <Container>
+        <CardContainer>
           {collection.map((pokemon) => {
             return (
               <Card
@@ -135,13 +143,16 @@ const PokemonBox = () => {
                       alt={pokemon.name + " Image"}
                     />
                   )}
-
-                  <p>{pokemon.name}</p>
+                  {pokemon.nickname === "" ? (
+                    <p>{pokemon.name}</p>
+                  ) : (
+                    <p>{pokemon.nickname}</p>
+                  )}
                 </Link>
               </Card>
             );
           })}
-        </Container>
+        </CardContainer>
       )}
     </>
   );
