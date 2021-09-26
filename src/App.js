@@ -20,7 +20,7 @@ function App() {
     bottom: 20px;
     right: 0px;
     color: white;
-    background-color: blue;
+    background-color: rgba(34, 34, 36, 1);
     padding: 10px 20px 10px 20px;
     border-radius: 20px;
   `;
@@ -42,7 +42,16 @@ function App() {
       <Title>Danimnh's Pokedex</Title>
       <Router>
         <Button>
-          <Link to="/box">Owned Pokemon</Link>
+          <Link
+            to="/box"
+            style={{
+              textDecoration: "none",
+              fontWeight: "bold",
+              color: "white",
+            }}
+          >
+            Owned Pokemon
+          </Link>
         </Button>
         <Switch>
           <Route exact path="/">
