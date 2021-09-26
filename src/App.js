@@ -15,15 +15,6 @@ function App() {
     setPokemonList(pokemonList);
   };
 
-  const Button = styled.button`
-    position: fixed;
-    bottom: 20px;
-    right: 0px;
-    color: white;
-    background-color: rgba(34, 34, 36, 1);
-    padding: 10px 20px 10px 20px;
-    border-radius: 20px;
-  `;
   const Layout = styled.div`
     display: flex;
     flex-direction: column;
@@ -31,6 +22,15 @@ function App() {
   `;
   const Title = styled.h2`
     color: black;
+  `;
+  const Button = styled.button`
+    position: fixed;
+    bottom: 20px;
+    right: 0px;
+    color: black;
+    background-color: #d2d2d6;
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px;
   `;
   useEffect(() => {
     getAllPokemonList();
