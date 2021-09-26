@@ -47,11 +47,15 @@ const PokemonCatchModal = (props) => {
     let savedPokemon = localStorage.getItem("myPokemon");
     if (savedPokemon === null) {
       savedPokemon = [];
+      modalContent.owned_id = 1;
       savedPokemon.push(modalContent);
       localStorage.setItem("myPokemon", JSON.stringify(savedPokemon));
     } else {
       savedPokemon = JSON.parse(savedPokemon);
-      savedPokemon.push(modalContent);
+      modalContent.owned_id = savedPokemon.length + 1;
+      console.log(modalContent);
+      let pushPokemon = modalContent;
+      savedPokemon.push(pushPokemon);
       localStorage.setItem("myPokemon", JSON.stringify(savedPokemon));
     }
 

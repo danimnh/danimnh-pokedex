@@ -61,7 +61,7 @@ function App() {
             render={(props) => <PokemonDetails {...props} />}
           />
           <Route
-            path="/box/:pokemon/:nickname"
+            path="/box/:pokemon/:nickname/:id"
             render={(props) => <PokemonDetails {...props} />}
           />
           <Route path="/box" render={(props) => <PokemonBox {...props} />} />

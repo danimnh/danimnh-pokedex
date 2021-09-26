@@ -145,7 +145,14 @@ const PokemonBox = () => {
             return (
               <Card key={i}>
                 <Link
-                  to={"box/" + pokemon.name + "/" + pokemon.nickname}
+                  to={
+                    "box/" +
+                    pokemon.name +
+                    "/" +
+                    pokemon.nickname +
+                    "/" +
+                    pokemon.owned_id
+                  }
                   style={{ textDecoration: "none", color: "#000000" }}
                 >
                   {pokemon.data && (

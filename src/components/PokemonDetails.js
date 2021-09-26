@@ -8,7 +8,7 @@ import MoveLearnt from "./MoveLearnt";
 import PokemonType from "./PokemonType";
 
 const PokemonDetails = (props) => {
-  let { pokemon, nickname } = props.match.params;
+  let { pokemon, nickname, id } = props.match.params;
   const [pokemonData, setPokemonData] = useState({});
   const [modalContent, setModalContent] = useState({});
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -22,6 +22,17 @@ const PokemonDetails = (props) => {
     } else {
       setIsModalVisible(true);
     }
+  };
+
+  const handleRelease = (id) => {
+    let savedPokemon = localStorage.getItem("myPokemon");
+    savedPokemon = JSON.parse(savedPokemon);
+    var removeIndex = savedPokemon.findIndex(function (o) {
+      return o.owned_id === parseInt(id);
+    });
+    savedPokemon.splice(removeIndex, 1);
+    localStorage.setItem("myPokemon", JSON.stringify(savedPokemon));
+    history.replace("/box");
   };
 
   const handleCloseModal = () => {
@@ -61,12 +72,14 @@ const PokemonDetails = (props) => {
     padding: 10px;
     background-color: red;
     color: white;
+    border-radius: 10px;
     margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
   `;
 
   const ImgContainer = styled.img`
     width: 200px;
-    // heigth: 300px;
     margin: 0 auto;
   `;
 
@@ -106,7 +119,13 @@ const PokemonDetails = (props) => {
       {nickname === undefined ? (
         <CatchButton onClick={handleCatch}>Catch</CatchButton>
       ) : (
-        <ReleaseButton>Release</ReleaseButton>
+        <ReleaseButton
+          onClick={() => {
+            handleRelease(id);
+          }}
+        >
+          Release
+        </ReleaseButton>
       )}
       <MoveLearnt moves={pokemonData.moves} />
       <PokemonCatchModal
